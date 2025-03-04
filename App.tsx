@@ -1,6 +1,7 @@
 import Flag, { Variants } from "cute-countries-react";
 import * as React from "react";
 import "./App.css";
+import CodeComponent from "./code";
 
 const variants = ["rounded", "square", "circle"];
 
@@ -274,33 +275,28 @@ function App() {
 
   return (
     <div className="App">
+      <header className="header-container">
+        <div className="header-content">
+          <a href="#available-icons" className="header-link">
+            Available Icons
+          </a>
+          <a
+            href="https://github.com/3phase/cute-countries-react"
+            target="_blank"
+            className="header-link"
+          >
+            Github
+          </a>
+        </div>
+      </header>
       <main className="App-main">
         <h1>
           <em>Cute Country Flags</em>
         </h1>
 
-        <Flag country={country} size={size} variant={variant} />
+        <Flag country={country} size={size} />
 
         <div className="App-form">
-          {/* <div className="App-field">
-            <label htmlFor="variants">Variant</label>{" "}
-            <select
-              className="App-select"
-              name="variants"
-              onChange={(e) =>
-                setVariant((e.target.value as Variants) || undefined)
-              }
-              value={variant}
-            >
-              <option value="">Choose...</option>
-              {variants.map((s) => (
-                <option key={s} value={s}>
-                  {s.charAt(0).toUpperCase() + s.slice(1)}
-                </option>
-              ))}
-            </select>
-          </div> */}
-
           <div className="App-field">
             <label htmlFor="countries">Country</label>{" "}
             <select
@@ -310,7 +306,6 @@ function App() {
               value={country}
             >
               {flags.map((code) => {
-                console.log(code);
                 const labelWithCode = `${code}`;
                 return (
                   <option key={code} value={code}>
@@ -337,6 +332,11 @@ function App() {
         </div>
 
         <code className="App-code">
+          <div className="top-buttons">
+            <div className="navbtn red"></div>
+            <div className="navbtn yellow"></div>
+            <div className="navbtn green"></div>
+          </div>
           <button
             className="App-copy-btn"
             onClick={() => copyToClipboard(previewCode)}
@@ -346,6 +346,20 @@ function App() {
           <pre>{previewCode}</pre>
         </code>
       </main>
+
+      <section id="available-icons" className="App-docs">
+        <div className="icon-grid-container">
+          <h1>List of Available Icons</h1>
+          <div className="icon-grid">
+            {flags.map((item, index) => (
+              <div className="icon-item" key={index}>
+                <Flag country={item as any} size={20} className="iconmap" />
+                <span className="icon-label">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -62,6 +62,10 @@
   padding: 0 1em;
 }
 
+.App-code.dark {
+  background-color: #161616;
+}
+
 .App-copy-btn {
   border-radius: 25px;
   background-color: var(--light-blue);
